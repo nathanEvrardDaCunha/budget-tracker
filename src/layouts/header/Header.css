@@ -1,0 +1,6 @@
+.header {
+    background-color: var(--background-color--dark-mode);
+    color: var(--text-color--dark-mode);
+    padding-inline: var(--white-space--medium);
+    padding-block: var(--white-space--extra-small);
+}
