@@ -1,0 +1,35 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400; /* Regular */
+    font-size: 16px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-weight: 700; /* Bold */
+}
+
+.light {
+    font-weight: 300; /* Light */
+}
+
+p,
+.medium {
+    font-weight: 500; /* Medium */
+}
+
+.thin {
+    font-weight: 100; /* Thin */
+}
+
+.black {
+    font-weight: 900; /* Black */
+}

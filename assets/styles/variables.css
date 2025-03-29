@@ -5,11 +5,4 @@
 
     --background-color--dark-mode: rgb(20, 20, 20);
     --text-color--dark-mode: rgb(240, 240, 240);
-
-    /* White Space */
-    --white-space--extra-small: 0.5rem;
-    --white-space--small: 1rem;
-    --white-space--medium: 2rem;
-    --white-space--large: 3rem;
-    --white-space--extra-large: 4rem;
 }
