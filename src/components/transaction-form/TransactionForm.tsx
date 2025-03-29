@@ -1,22 +1,13 @@
 import { useState } from 'react';
 
-export function TransactionForm() {
+// TODO: Separate this file into smaller component to make it smaller.
+// IDEA: Separate the reusable components from the feature component into distinct folder.
+// => "features" folder and "components" folder.
+
+export function TransactionForm(props: any) {
     const [type, setType] = useState('expense');
 
-    // IDEA: use React Context instead because the data storage will probably be global to the whole app.
-    // => Allow for a single source of truth.
-    // => This function will probably either be replaced by one of it's parent function or write in a global context.
-    function handleFormAction(formData: FormData) {
-        console.log(formData.get('transaction-name'));
-        console.log(formData.get('transaction-cost'));
-        console.log(formData.get('transaction-type'));
-        console.log(formData.get('transaction-category'));
-
-        // IDEA: Add some form validation even if it's client side.
-    }
-
     function handleTypeChange(event: { target: { value: any } }) {
-        // console.log(event.target.value);
         setType(event.target.value);
     }
 
@@ -57,7 +48,7 @@ export function TransactionForm() {
     return (
         // NOTE: Client side validation is not secure.
         // The reason we're doing this is because this software doesn't need a backend for now.
-        <form action={handleFormAction}>
+        <form action={props.handleFormAction}>
             <fieldset>
                 <legend>Create new Transaction</legend>
 
@@ -88,7 +79,6 @@ export function TransactionForm() {
                     <option value="investment">Investment</option>
                 </select>
 
-                {/* TODO: Change category based on type selected before */}
                 <label htmlFor="transaction-category">Select transaction category</label>
                 <select name="transaction-category" id="transaction-category" required>
                     {displayRelevantCategory()}
