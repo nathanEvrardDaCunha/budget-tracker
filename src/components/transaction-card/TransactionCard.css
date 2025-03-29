@@ -1,0 +1,66 @@
+.transaction-variables {
+    /* TODO: Find prefix to for custom component variables to avoid accidentally using global */
+
+    /* White Space */
+    /* --cc-space--extra-small: 0.5rem; */
+    --cc-space--small: 1rem;
+    --cc-space--medium: 2rem;
+    /* --cc-space--large: 3rem; */
+    /* --cc-space--extra-large: 4rem; */
+
+    /* Extras */
+    /* --cc-border-radius--rounded: 1.5rem; */
+
+    /*  */
+    /* --cc--button-size: 1.5rem; */
+    /* --cc--button-radius: 100%; */
+
+    /*  */
+}
+
+.transaction-card {
+    margin-inline: 2rem;
+    margin-block: 1rem;
+    background-color: var(--background-color--dark-mode);
+    padding-inline: 2rem;
+    padding-block: 1rem;
+    border-radius: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.transaction-card__header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.transaction-card__name {
+    color: var(--text-color--dark-mode);
+}
+
+.transaction-card__button {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 100%;
+}
+
+.transaction-card__body {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 1rem;
+    /* justify-content: space-between; */
+}
+
+.transaction-card__data {
+    color: var(--text-color--dark-mode);
+    font-weight: 300;
+}
+
+.transaction-card__label {
+    color: var(--text-color--dark-mode);
+    font-weight: 500;
+}
