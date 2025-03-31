@@ -1,15 +1,12 @@
-import { HistoryPage } from './pages/history/HistoryPage';
+import { ModernHistoryPage } from './pages/HistoryPage';
 
 // TODO: Use context for light / dark mode
 
+// IDEA: Implement router for multiple pages
 export function App() {
     return (
         <>
-            {/* <Header /> */}
-            {/* <h1>React root setup perfectly !</h1> */}
-            {/* <Footer /> */}
-
-            <HistoryPage />
+            <ModernHistoryPage />
         </>
     );
 }
