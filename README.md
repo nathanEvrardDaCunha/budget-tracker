@@ -82,6 +82,18 @@ Functionality:
     -   CRUD Investments
 
 -   Budget
+
     -   Custom Limit per Budget category
     -   Multiple Custom Budget
     -   Transfer Expenses / Incomes / Investments into another distinct budget
+
+-   Other
+    -   Add Dark Mode / Light Mode
+
+---
+
+## Things I have learned
+
+-   Bug: I encountered a bug in my HistoryForm because it wasn't a Controlled Component.
+    => Because the form submission and reset logic weren't mine, many data where reset causing many design flaws.
+    Use "value" for Controlled Component instead of "defaultValue" which rely on the DOM.

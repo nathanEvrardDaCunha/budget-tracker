@@ -1,7 +1,7 @@
 export interface Transaction {
     id: number;
     title: string;
-    cost: number;
+    amount: number;
     type: TransactionType;
     category: TransactionCategory;
     date: string;
@@ -13,31 +13,18 @@ export enum TransactionType {
     INVESTMENT = 'investment',
 }
 
-export enum TransactionExpenseCategory {
-    GROCERY = 'grocery',
-    ENTERTAINMENT = 'entertainment',
-    HOUSING = 'housing',
-    TRANSPORT = 'transport',
+export enum TransactionCategory {
+    EXPENSE_GROCERY = 'grocery',
+    EXPENSE_ENTERTAINMENT = 'entertainment',
+    EXPENSE_HOUSE = 'housing',
+    EXPENSE_TRANSPORT = 'transport',
+    INCOME_PRIMARY_JOB = 'primary Job',
+    INCOME_SIDE_HUSTLE = 'side Hustle',
+    INCOME_REFUND = 'refund',
+    INCOME_WARRANT = 'warrant',
+    INVESTMENT_CRYPTO_CURRENCY = 'crypto-currency',
+    INVESTMENT_BOND = 'bond',
+    INVESTMENT_RENT = 'rent',
+    INVESTMENT_STOCK = 'stock',
     OTHER = 'other',
 }
-
-export enum TransactionIncomeCategory {
-    PRIMARY_JOB = 'primary Job',
-    SIDE_HUSTLE = 'side Hustle',
-    REFUND = 'refund',
-    WARRANTY = 'warranty',
-    OTHER = 'other',
-}
-
-export enum TransactionInvestmentCategory {
-    CRYPTO_CURRENCY = 'crypto-currency',
-    BOND = 'bond',
-    RENT = 'rent',
-    STOCK = 'stock',
-    OTHER = 'other',
-}
-
-export type TransactionCategory =
-    | TransactionExpenseCategory
-    | TransactionIncomeCategory
-    | TransactionInvestmentCategory;

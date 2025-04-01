@@ -1,19 +1,13 @@
 import { useEffect, useState } from 'react';
-import {
-    Transaction,
-    TransactionCategory,
-    TransactionExpenseCategory,
-    TransactionIncomeCategory,
-    TransactionInvestmentCategory,
-    TransactionType,
-} from '../data/transaction';
-import { TransactionForm } from '../features/transaction-form/TransactionForm';
-import { TransactionCard } from '../components/transaction-card/TransactionCard';
+import { Transaction, TransactionCategory, TransactionType } from '../data/transaction';
+import { HistoryForm } from '../features/HistoryForm';
+import { Card } from '../components/card/Card';
+import { Header } from '../layouts/header/Header';
+import { Footer } from '../layouts/footer/Footer';
 
 export function ModernHistoryPage() {
     const [transactions, setTransactions] = useState<Transaction[]>([]);
 
-    // Load transactions from localStorage on component mount only
     useEffect(() => {
         const storedTransactions = localStorage.getItem('transactions');
         if (storedTransactions) {
@@ -27,19 +21,17 @@ export function ModernHistoryPage() {
                 localStorage.removeItem('transactions');
             }
         }
-    }, []); // Empty dependency array ensures this runs only once on mount
+    }, []);
 
-    function handleFormAction(formData: FormData) {
-        // IDEA: Replace the hardcoded "get" value by a data constant
-        // => Also include it in TransactionForm for each input and label
+    function handleAction(formData: FormData) {
         const transactionName = formData.get('transaction-name') as string | null;
         if (transactionName === null) {
             throw new Error('Html transaction name form field should not be null !');
         }
 
-        const transactionCost = formData.get('transaction-cost') as string | null;
-        if (transactionCost === null) {
-            throw new Error('Html transaction cost form field should not be null !');
+        const transactionAmount = formData.get('transaction-amount') as string | null;
+        if (transactionAmount === null) {
+            throw new Error('Html transaction amount form field should not be null !');
         }
 
         const transactionType = formData.get('transaction-type') as string | null;
@@ -56,13 +48,7 @@ export function ModernHistoryPage() {
             throw new Error('Form type is not a valid value !');
         }
 
-        const categories = [
-            ...Object.values(TransactionExpenseCategory),
-            ...Object.values(TransactionIncomeCategory),
-            ...Object.values(TransactionInvestmentCategory),
-        ];
-
-        if (!categories.includes(transactionCategory as TransactionCategory)) {
+        if (!Object.values(TransactionCategory).includes(transactionCategory as TransactionCategory)) {
             throw new Error('Form category is not a valid value !');
         }
 
@@ -73,17 +59,15 @@ export function ModernHistoryPage() {
         const newTransaction: Transaction = {
             id: Date.now(),
             title: transactionName,
-            cost: parseFloat(transactionCost),
+            amount: parseFloat(transactionAmount),
             type: transactionType as TransactionType,
             category: transactionCategory as TransactionCategory,
             date: isoString,
         };
 
-        // Update state with new transaction
         const updatedTransactions = [...transactions, newTransaction];
         setTransactions(updatedTransactions);
 
-        // Save to localStorage
         try {
             localStorage.setItem('transactions', JSON.stringify(updatedTransactions));
         } catch (error) {
@@ -91,29 +75,41 @@ export function ModernHistoryPage() {
         }
     }
 
+    function handleClickDelete(id: number) {
+        const filteredTransaction = transactions.filter((transaction) => {
+            if (transaction.id !== id) {
+                return transaction;
+            }
+        });
+
+        setTransactions(filteredTransaction);
+
+        try {
+            localStorage.setItem('transactions', JSON.stringify(filteredTransaction));
+        } catch (error) {
+            console.error('Error saving transactions:', error);
+        }
+    }
+
     return (
         <>
-            <TransactionForm handleFormAction={handleFormAction} />
+            <Header />
 
-            {transactions.length > 0 ? (
-                transactions.map((transaction) => {
-                    return (
-                        <TransactionCard
-                            key={transaction.id}
-                            id={transaction.id}
-                            title={transaction.title}
-                            cost={transaction.cost}
-                            type={transaction.type}
-                            category={transaction.category}
-                            // TODO: Allow the user to choose the date in the form
-                            // TODO: Make the date not display as ISO format but YYYY-MM-DD or DD-MM-YYYY
-                            date={transaction.date}
-                        />
-                    );
-                })
-            ) : (
-                <p>There are no transaction for now.</p>
-            )}
+            <main>
+                <HistoryForm handleAction={handleAction} />
+
+                {transactions.length > 0 ? (
+                    transactions.map((transaction) => {
+                        return (
+                            <Card key={transaction.id} transaction={transaction} onClickDelete={handleClickDelete} />
+                        );
+                    })
+                ) : (
+                    <p>There are no transaction for now.</p>
+                )}
+            </main>
+
+            <Footer />
         </>
     );
 }
