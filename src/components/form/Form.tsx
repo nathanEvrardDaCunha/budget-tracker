@@ -1,8 +1,10 @@
 interface FormProps {
-    handleAction: any;
+    action: any;
     children: React.ReactNode;
 }
 
-export function Form(props: FormProps) {
-    return <form action={props.handleAction}>{props.children}</form>;
+function Form(props: FormProps) {
+    return <form action={props.action}>{props.children}</form>;
 }
+
+export { Form };

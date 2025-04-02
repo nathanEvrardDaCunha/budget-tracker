@@ -1,10 +1,12 @@
-import { ModernHistoryPage } from './pages/HistoryPage';
+import { HistoryPageLogic } from './pages/HistoryPageLogic';
 
 // IDEA: Implement router for multiple pages
-export function App() {
+function App() {
     return (
         <>
-            <ModernHistoryPage />
+            <HistoryPageLogic />
         </>
     );
 }
+
+export { App };

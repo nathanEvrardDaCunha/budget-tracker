@@ -1,4 +1,4 @@
-interface FormSelectProps {
+interface SelectProps {
     name: string;
     id: string;
     required: boolean;
@@ -7,10 +7,12 @@ interface FormSelectProps {
     children: React.ReactNode;
 }
 
-export function FormSelect(props: FormSelectProps) {
+function Select(props: SelectProps) {
     return (
         <select name={props.name} id={props.id} required={props.required} onChange={props.onChange} value={props.value}>
             {props.children}
         </select>
     );
 }
+
+export { Select };

@@ -8,7 +8,7 @@ import { CardContent } from './CardContent';
 interface Card {
     transaction: {
         id: number;
-        title: string;
+        name: string;
         amount: number;
         type: TransactionType;
         category: TransactionCategory;
@@ -29,38 +29,21 @@ export function Card(props: Card) {
     return (
         <CardSection>
             <CardSection>
-                <CardTitle content={props.transaction.title} />
+                <CardTitle content={props.transaction.name} />
                 <CardButton type="display" onClick={handleClick} />
             </CardSection>
 
             {isDisplayed ? (
                 <>
                     <CardSection>
-                        <CardContent
-                            label="Amount"
-                            value={props.transaction.amount}
-                        />
-                        <CardContent
-                            label="Type"
-                            value={props.transaction.type}
-                        />
-                        <CardContent
-                            label="Category"
-                            value={props.transaction.category}
-                        />
-                        <CardContent
-                            label="Date"
-                            value={props.transaction.date}
-                        />
+                        <CardContent label="Amount" value={props.transaction.amount} />
+                        <CardContent label="Type" value={props.transaction.type} />
+                        <CardContent label="Category" value={props.transaction.category} />
+                        <CardContent label="Date" value={props.transaction.date} />
                     </CardSection>
 
                     <CardSection>
-                        <CardButton
-                            type="delete"
-                            onClick={() =>
-                                props.onClickDelete(props.transaction.id)
-                            }
-                        />
+                        <CardButton type="delete" onClick={() => props.onClickDelete(props.transaction.id)} />
                     </CardSection>
                 </>
             ) : null}

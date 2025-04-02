@@ -97,3 +97,28 @@ Functionality:
 -   Bug: I encountered a bug in my HistoryForm because it wasn't a Controlled Component.
     => Because the form submission and reset logic weren't mine, many data where reset causing many design flaws.
     Use "value" for Controlled Component instead of "defaultValue" which rely on the DOM.
+
+-   Fix: I can call a function from my "props" in another one instead of being forced to call it on a JSX element.
+    => Because of this, I could fix the bug where the form couldn't send the relevant data and reset itself visually.
+    Now when my form is submitted, it first send the relevant data through the props function and call my custom inner reset form function.
+
+-   Design: With React I can easily isolate every component into it's own file.
+    => Because of that it enhance the modularity of my codebase but add more way redundancy.
+    The question is 'what is better between a codebase which is modular or dynamic', especially considering the "locality factor"
+
+-   Design: What is better between LoB (Locality of Behavior) and CC (Clean Code) ?
+    => LoB is not silver bullet but could prevent the "Shotgun surgery" smell where things are too scattered.
+    Focus on High Cohesion and Low Coupling
+
+-   Design: Separate UI from Logic for bigger files
+
+-   Name things same as React in props
+
+-   Bug: Don't throw error without wrapping them in a try catch prior
+-   Bug: Don't throw error in the "catch (error)" part of your try catch => use console.error() instead
+
+-   Design: keep utility class and utility variables outside of the component => If it doesn't rely on any hook nor internal state, then it doesn't have to be in the component.
+
+-   Design: Try to keep your React file (UI and primarily logic) under 100 lines.
+
+Term: SoC (Seclusion Of Concern)

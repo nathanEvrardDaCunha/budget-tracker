@@ -5,7 +5,7 @@ import { App } from './app';
 try {
     const rootElement = document.getElementById('root');
 
-    if (rootElement === null) {
+    if (!rootElement) {
         throw new Error('Html root element should never be null !');
     }
 
